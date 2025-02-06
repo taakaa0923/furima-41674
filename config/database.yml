@@ -9,6 +9,7 @@ development:
   password:
   host: localhost
   database: furima41674_development
+  
 
 test:
   <<: *default
