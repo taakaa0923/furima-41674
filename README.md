@@ -24,7 +24,7 @@
 | Column                  | Type       | Options                        |
 | ------------------------| ---------- | ------------------------------ |
 | name                    | string     | null: false                    |
-| category                | string     | null: false                    |
+| category_id             | integer    | null: false                    |
 | sales_status_id         | integer    | null: false                    |
 | shipping_fee_status_id  | integer    | null: false                    |
 | prefecture_id           | integer    | null: false                    |
