@@ -1,16 +1,15 @@
 ## users テーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| nickname              | string  | null: false |
-| email                 | string  | null: false |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
-| firstname             | string  | null: false |
-| lastname              | string  | null: false |
-| firstname_kana        | string  | null: false |
-| lastname_kana         | string  | null: false |
-| birth_date            | date    | null: false |
+| Column               | Type    | Options                 |
+| -------------------- | ------- | -----------             |
+| nickname             | string  | null: false             |
+| email                | string  | null: false ,unique:true|
+| encrypted_password   | string  | null: fals              |
+| first_name           | string  | null: false             |
+| last_name            | string  | null: false             |
+| first_name_kana      | string  | null: false             |
+| last_name_kana       | string  | null: false             |
+| birth_date           | date    | null: false             |
 
 
 
@@ -24,13 +23,12 @@
 
 | Column                  | Type       | Options                        |
 | ------------------------| ---------- | ------------------------------ |
-| image                   | string     | null: false                    |
 | name                    | string     | null: false                    |
 | category                | string     | null: false                    |
-| sales status            | string     | null: false                    |
-| Shipping fee status     | string     | null: false                    |
-| prefecture              | integer    | null: false                    |
-| Scheduled delivery      | integer    | null: false                    |
+| sales_status_id         | integer    | null: false                    |
+| shipping_fee_status_id  | integer    | null: false                    |
+| prefecture_id           | integer    | null: false                    |
+| scheduled_delivery_id   | integer    | null: false                    |
 | price                   | integer    | null: false                    |
 | user                    | references | null: false ,foreign_key: true |
 
@@ -58,7 +56,7 @@ has_one :address
 | Column         | Type       | Options                       |
 | -------------- | ---------- | ----------------------------- |
 | postal_code    | string     | null: false                   |
-| prefecture     | integer    | null: false                   |
+| prefecture_id  | integer    | null: false                   |
 | city           | string     | null: false                   |
 | house_number   | string     | null: false                   |
 | building_name  | string     |                               |
