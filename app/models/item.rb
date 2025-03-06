@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to_active_hash :category
   belongs_to_active_hash :sales_status
   belongs_to_active_hash :prefecture
@@ -14,11 +15,16 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :scheduled_delivery_id, presence: true
   validates :price, presence: true
-  validates :user, presence: true
+  validates :text, presence: true
 
-  validates :category_id, numericality: { other_than: 1 }
-  validates :price, numericality: { less_than: 9_999_999, greater_than: 300 }
-
+  with_options numericality: { other_than: 0 } do
+    validates :category_id
+    validates :sales_status_id
+    validates :shipping_fee_status_id
+    validates :prefecture_id
+    validates :scheduled_delivery_id
+    validates :price, numericality: { less_than: 9_999_999, greater_than: 300 }
+  end
   belongs_to :user
   has_one_attached :image
 end
