@@ -10,7 +10,7 @@ document.addEventListener("turbo:load", () => {
 
       if (!isNaN(priceValue) && priceValue !== "") {
         const tax = Math.round(priceValue * 0.1);
-        const profit = Math.round(priceValue - tax);
+        const profit = Math.floor(priceValue - tax);
 
         addTaxDom.innerHTML = tax;
         addProfitDom.innerHTML = profit;
@@ -21,3 +21,6 @@ document.addEventListener("turbo:load", () => {
     });
   }
 });
+
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);

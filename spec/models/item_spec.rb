@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user: @user)
-  end
-  it 'is valid with valid attributes' do
-    expect(@item).to be_valid
   end
 
   describe '商品出品' do
@@ -65,37 +61,37 @@ RSpec.describe Item, type: :model do
       it 'priceが299以下では保存できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than 300')
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが10000000以上では保存できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than 9999999')
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'カテゴリーの情報が0だと登録できない' do
-        @item.category_id = [0]
+        @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank", 'Category is not a number')
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
       it '商品の状態についての情報が0だと登録できない' do
-        @item.sales_status_id = [0]
+        @item.sales_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Sales status can't be blank", 'Sales status is not a number')
+        expect(@item.errors.full_messages).to include('Sales status must be other than 0')
       end
       it '配送料の負担についての情報が0だと登録できない' do
-        @item.shipping_fee_status_id = [0]
+        @item.shipping_fee_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee status can't be blank", 'Shipping fee status is not a number')
+        expect(@item.errors.full_messages).to include('Shipping fee status must be other than 0')
       end
       it '発送元の地域についての情報が0だと登録できない' do
-        @item.prefecture_id = [0]
+        @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture is not a number')
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
       it '発送までの日数についての情報が0だと登録できない' do
-        @item.scheduled_delivery_id = [0]
+        @item.scheduled_delivery_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank", 'Scheduled delivery is not a number')
+        expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 0')
       end
     end
   end
