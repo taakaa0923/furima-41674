@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item, user: @user)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品出品' do
@@ -92,6 +92,16 @@ RSpec.describe Item, type: :model do
         @item.scheduled_delivery_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 0')
+      end
+      it '販売価格は半角数字のみ入力可能であること' do
+        @item.price = 'aあ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

@@ -9,7 +9,7 @@ document.addEventListener("turbo:load", () => {
       const priceValue = priceInput.value;
 
       if (!isNaN(priceValue) && priceValue !== "") {
-        const tax = Math.round(priceValue * 0.1);
+        const tax = Math.floor(priceValue * 0.1);
         const profit = Math.floor(priceValue - tax);
 
         addTaxDom.innerHTML = tax;
