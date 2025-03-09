@@ -220,7 +220,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10vh 0;
+ padding: 10vh 0;
 }
 
 .item-contents>.title {
@@ -242,22 +242,25 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 }
 
 .item-lists>.list {
   width: 37vh;
   padding: 1vw;
-  background-color: #FFF;
+  background-color: #FFF;  
 }
 
 
 .item-img-content {
   position: relative;
+  
 }
 
 .item-img {
   width: 33vh;
   height: 33vh;
+  
 }
 
 .sold-out {
@@ -280,6 +283,7 @@ a {
   background-color: #FFF;
   color: black;
   padding: 1vw;
+ 
 }
 
 .item-name {
