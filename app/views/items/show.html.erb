@@ -4,14 +4,15 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-    
+         <%= @item.name %>
     </h2>
 <div class="item-img-content">
   <%= image_tag @item.image, class: "item-box-img" %>
   <% if @item.sold? %>
     <div class="soldout">Sold Out</div>
   <% end %>
-</div>
+  
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -20,15 +21,14 @@
       <span class="item-postage">
        <%= @item.shipping_fee_status.name%>
       </span>
-    </div>
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
+   </div>
 
      <% if user_signed_in? && current_user.id == @item.user_id%> 
     <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
     <% else %>
-   
+  
     <% end %> 
 
     <div class="item-explain-box">
@@ -73,6 +73,7 @@
       </div>
     </div>
   </div>
+  
   <%# /商品の概要 %>
 
   <div class="comment-box">
@@ -97,6 +98,7 @@
       後ろの商品 ＞
     </a>
   </div>
+   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
   <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
