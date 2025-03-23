@@ -15,6 +15,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id != current_user.id || @item.order.present?
+      redirect_to root_path
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   def update
