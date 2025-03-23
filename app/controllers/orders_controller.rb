@@ -7,9 +7,6 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
   end
 
-  def new
-  end
-
   def create
     @order_address = OrderAddress.new
     if @order_address.valid?
