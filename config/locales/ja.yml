@@ -1,9 +1,24 @@
 ja:
-  date:
-    formats:
-      default: "%Y-%m-%d"
-    order:
-      - :year
-      - :month
-      - :day
+  activemodel:
+    errors:
+      models:
+        order_address:
+          attributes:
+            prefecture:
+              other_than: "0以外を選択してください"
+              blank: "を入力してください"
+            city:
+              blank: "を入力してください"
+            house_number:
+              blank: "を入力してください"
+            phone_number:
+              blank: "を入力してください"
+              invalid: "は正しい形式で入力してください"
+            postal_code:
+              blank: "を入力してください"
+              invalid: "は正しい形式で入力してください"
+            token:
+              blank: "を入力してください"
+              
+
       
