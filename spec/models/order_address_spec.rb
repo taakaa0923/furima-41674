@@ -7,9 +7,13 @@ RSpec.describe OrderAddress, type: :model do
     @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: @item.id)
   end
 
-  describe '寄付情報の保存' do
+  describe '購入情報の保存' do
     context '内容に問題ない場合' do
       it 'すべての情報があれば登録できる' do
+        expect(@order_address).to be_valid
+      end
+      it '建物名は空でも購入できる' do
+        @order_address.building_name = ''
         expect(@order_address).to be_valid
       end
     end
@@ -57,10 +61,30 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number は正しい形式で入力してください')
       end
+      it '電話番号が9桁以下だと保存できない' do
+        @order_address.phone_number = '08012345'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number は正しい形式で入力してください')
+      end
+      it '電話番号が12桁以上では保存できない' do
+        @order_address.phone_number = '0901234567890'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number は正しい形式で入力してください')
+      end
       it 'トークンが空だと購入できない' do
         @order_address.token = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Token を入力してください')
+      end
+      it 'user_idが空だと保存できない' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('User を入力してください')
+      end
+      it 'item_idが空だと保存できない' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Item を入力してください')
       end
     end
   end

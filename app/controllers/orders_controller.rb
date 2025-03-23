@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :move_to_index
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
@@ -13,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order_address = OrderAddress.new(order_params.merge(item_id: @item.id))
+    @order_address = OrderAddress.new
     if @order_address.valid?
       pay_item
       @order_address.save
@@ -32,7 +31,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(
-      user_id: current_user.id, token: params[:token]
+      user_id: current_user.id, token: params[:token], item_id: @item.id
     )
   end
 
@@ -46,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    return unless @item.order.present?
+    return unless @item.user_id == current_user.id || @item.order.present?
 
     redirect_to root_path
   end

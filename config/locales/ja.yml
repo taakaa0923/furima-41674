@@ -19,6 +19,10 @@ ja:
               invalid: "は正しい形式で入力してください"
             token:
               blank: "を入力してください"
+            user_id:
+              blank: "を入力してください"
+            item_id:
+              blank: "を入力してください"
               
 
       
