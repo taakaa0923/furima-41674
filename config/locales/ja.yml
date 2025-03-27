@@ -1,6 +1,6 @@
 ja:
   date:
-    order: [ :year, :month, :day ]
+    order: ["year", "month", "day"]
   activemodel:
     errors:
       models:
