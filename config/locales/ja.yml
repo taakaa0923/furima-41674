@@ -1,4 +1,6 @@
 ja:
+  date:
+    order: [ :year, :month, :day ]
   activemodel:
     errors:
       models:
@@ -23,6 +25,3 @@ ja:
               blank: "を入力してください"
             item_id:
               blank: "を入力してください"
-              
-
-      
