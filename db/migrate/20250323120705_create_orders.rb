@@ -6,3 +6,5 @@ class CreateOrders < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+  end
+end

@@ -52,19 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_27_065655) do
     t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
-  create_table "articles", charset: "utf8mb3", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "genre_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.integer "category_id", null: false
@@ -87,13 +74,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_27_065655) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_orders_on_item_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "orderss", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "item_id"
-    t.integer "user_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
