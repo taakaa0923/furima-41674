@@ -61,47 +61,47 @@ RSpec.describe Item, type: :model do
       it 'priceが299以下では保存できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it 'priceが10000000以上では保存できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it 'カテゴリーの情報が0だと登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be other than 0')
+        expect(@item.errors.full_messages).to include("Category must be other than 0")
       end
       it '商品の状態についての情報が0だと登録できない' do
         @item.sales_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Sales status must be other than 0')
+        expect(@item.errors.full_messages).to include("Sales status must be other than 0")
       end
       it '配送料の負担についての情報が0だと登録できない' do
         @item.shipping_fee_status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping fee status must be other than 0')
+        expect(@item.errors.full_messages).to include("Shipping fee status must be other than 0")
       end
       it '発送元の地域についての情報が0だと登録できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
       end
       it '発送までの日数についての情報が0だと登録できない' do
         @item.scheduled_delivery_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 0')
+        expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 0")
       end
       it '販売価格は半角数字のみ入力可能であること' do
         @item.price = 'aあ'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it 'userが紐付いていないと保存できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist')
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
